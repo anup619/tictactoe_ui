@@ -50,7 +50,12 @@
 .column {
   display: flex;
   flex: 1;
-  margin: 50px;
+  margin: 30px;
   align-items: center;
   justify-content: center;
+}
+
+p{
+  font-size: 20px;
+  font-weight: bold;
 }
