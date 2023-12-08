@@ -1,70 +1,51 @@
-# Getting Started with Create React App
+# Tic Tac Toe React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a Tic Tac Toe game implemented as a React app with an integrated AI opponent. The AI opponent uses an API to determine the most optimal move for each turn.
 
-## Available Scripts
+## Project Overview
 
-In the project directory, you can run:
+The project consists of the following files:
 
-### `npm start`
+- **Square.js**: React component for rendering a square on the game board.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **ConfigContext.js**: React Context for storing configuration settings, including the API URL.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **Board.js**: React component for rendering the game board, handling user moves, and calling the backend API for AI moves.
 
-### `npm test`
+- **Game.js**: React component managing the overall game state, including players, squares, turns, and game status.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- **App.js**: Main entry point for the React app, rendering the `Game` component.
 
-### `npm run build`
+## Getting Started
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+1. Clone the repository.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+2. Install dependencies using `npm install`.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Start the development server with `npm start`.
 
-### `npm run eject`
+4. Access the app in your browser at [http://localhost:3000](http://localhost:3000).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## How to Play
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Choose your symbol (X or O) to start the game.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Make your move by clicking on an empty square.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- The AI opponent will respond with the most optimal move.
 
-## Learn More
+- The game ends when a player wins or it's a draw.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Backend API
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+The AI opponent's moves are determined by a backend API deployed on [PythonAnywhere](https://anup619.pythonanywhere.com/). The API URL is configured using the `ConfigContext`.
 
-### Code Splitting
+## Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The React app is deployed on Vercel and can be accessed at [https://tictactoe-ui-dusky.vercel.app/](https://tictactoe-ui-dusky.vercel.app/).
+And the source code of the api can be found at [https://github.com/anup619/tictactoe_api](https://github.com/anup619/tictactoe_api)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+Feel free to explore the source code and adapt it to your preferences. If you encounter any issues or have suggestions for improvement, please [open an issue](https://github.com/anup619/tictactoe_ui/issues).
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Enjoy playing Tic Tac Toe!
