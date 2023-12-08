@@ -1,5 +1,6 @@
-import React, { useEffect, useCallback, useMemo } from 'react';
+import React, { useEffect, useCallback, useMemo, useContext } from 'react';
 import Square from './Square';
+import ConfigContext from './ConfigContext';
 
 function Board({
   // Board properties
@@ -15,7 +16,10 @@ function Board({
 }) {
   // Cache for optimal moves to improve performance
   const optimalMovesCache = useMemo(() => new Map(), []);
-
+  
+  // Get the api url from config file
+  const {apiUrl} = useContext(ConfigContext)
+  
   // Debounced function to prevent excessive API calls
   const debouncedHandleClick = useCallback(
     (row, col) => {
@@ -34,35 +38,35 @@ function Board({
       }
     },
     [gameStarted, gameEnded, isNextMoveAi, players, setsquares, squares, setisNextMoveAi]
-  );
-
-  // Function to update board with AI's move
-  const makeMove = useCallback(
-    async (data) => {
-      if (data.optimal_move) {
-        setsquares((prevSquares) => {
-          const copyOfSquares = [...prevSquares];
-          const [i, j] = data.optimal_move;
-          copyOfSquares[i][j] = data.next_player;
-          return copyOfSquares;
-        });
-        setisNextMoveAi(false); // Set back to player's turn
-      }
-    },
-    [setsquares, setisNextMoveAi]
-  );
-
-  // Function to fetch optimal move from backend API
-  const fetchData = useCallback(
-    async (board) => {
-      try {
+    );
+    
+    // Function to update board with AI's move
+    const makeMove = useCallback(
+      async (data) => {
+        if (data.optimal_move) {
+          setsquares((prevSquares) => {
+            const copyOfSquares = [...prevSquares];
+            const [i, j] = data.optimal_move;
+            copyOfSquares[i][j] = data.next_player;
+            return copyOfSquares;
+          });
+          setisNextMoveAi(false); // Set back to player's turn
+        }
+      },
+      [setsquares, setisNextMoveAi]
+      );
+      
+      // Function to fetch optimal move from backend API
+      const fetchData = useCallback(
+        async (board) => {
+          try {
         // Check cache for previously calculated move
         const cachedMove = optimalMovesCache.get(JSON.stringify(board));
         if (cachedMove) {
           return cachedMove;
         }
 
-        const response = await fetch('http://127.0.0.1:5000/optimalmove', {
+        const response = await fetch(`${apiUrl}/optimalmove`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -79,7 +83,7 @@ function Board({
         return undefined;
       }
     },
-    [optimalMovesCache]
+    [optimalMovesCache,apiUrl]
   );
 
 
